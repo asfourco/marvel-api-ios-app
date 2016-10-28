@@ -5,5 +5,6 @@ target 'MarvelAPIDemo' do
 
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'CryptoSwift'
 
 end

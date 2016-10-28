@@ -12,7 +12,7 @@
 3. CocoaPods:
     3. Alamofire (https://cocoapods.org/pods/Alamofire) - HTTP networking library for API calls
     4. SwiftyJSON (https://cocoapods.org/pods/SwiftyJSON) - JSON data handling
-
+    3. CryptoSwift (https://github.com/krzyzanowskim/CryptoSwift) - Swift Crypto related functions
 ## How to Build
 
 ## How to test

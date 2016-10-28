@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>CryptoSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MarvelAPIDemo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,7 +27,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5444B2F4AC11A830D25030AB444CBE9A</key>
+		<key>0E6C5E475B117C10788064E1F754F302</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1978024ED098C0ADFD0776F8D7B2B25D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -32,7 +42,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F3001CA771EADDA08EF29BCE9B867EDF</key>
+		<key>D3695E415609CA8F6B2E87756A78A751</key>
 		<dict>
 			<key>primary</key>
 			<true/>

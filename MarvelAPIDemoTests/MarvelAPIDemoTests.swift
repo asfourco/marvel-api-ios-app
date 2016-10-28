@@ -10,10 +10,13 @@ import XCTest
 @testable import MarvelAPIDemo
 
 class MarvelAPIDemoTests: XCTestCase {
+    var vc: ViewController!
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        vc = storyboard.instantiateInitialViewController() as! ViewController
     }
     
     override func tearDown() {
@@ -21,9 +24,10 @@ class MarvelAPIDemoTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testMarvelAPICall() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCTAssert(true)
     }
     
     func testPerformanceExample() {
