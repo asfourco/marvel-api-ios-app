@@ -16,10 +16,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         APICall().downloadComics() {
-            (status: String, attributionText: String, results: [APIResults], error: String) in
-            print("status: \(status)")
-            print("attributionText: \(attributionText)")
-            print("results count: \(results.count)")
+            (data: APIReturnDataSet?, results: [APIResults]?, error: String) in
+            print("status: \(data?.status)")
+            print("attributionText: \(data?.attributionText)")
+            print("Returned with data count: \(data?.data?.count)")
+            print("Returned with data limit of: \(data?.data?.limit)")
+            print("results count: \(results?.count)")
             print("errors: \(error)")
         }
     }
