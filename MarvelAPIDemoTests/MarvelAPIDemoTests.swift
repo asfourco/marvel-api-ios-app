@@ -27,7 +27,12 @@ class MarvelAPIDemoTests: XCTestCase {
     func testMarvelAPICall() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        XCTAssert(true)
+//        vc.downloadComics() {
+//            (status: String, attributionText: String, results: [AnyObject]) in
+//            
+//            XCTAssert(status == "Ok", "return status is not ok!")
+//            XCTAssertNil(results, "results array is empty!")
+//        }
     }
     
     func testPerformanceExample() {
