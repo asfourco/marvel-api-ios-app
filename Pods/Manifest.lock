@@ -1,18 +1,22 @@
 PODS:
   - Alamofire (4.0.1)
-  - CryptoSwift (0.6.4)
+  - AlamofireImage (3.1.0):
+    - Alamofire (~> 4.0)
+  - CryptoSwift (0.6.5)
   - Gloss (1.1.0)
 
 DEPENDENCIES:
   - Alamofire
+  - AlamofireImage
   - CryptoSwift
   - Gloss
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  CryptoSwift: 2cb9a11b942b443ca3316bdac2733ed6c6e16d4e
+  AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
+  CryptoSwift: d86b1d97d39b4a361ba44c77180b221e9c5b864f
   Gloss: a8340c124ff69c5d1c12e06c252373f4a16d2958
 
-PODFILE CHECKSUM: 6df7f9cdd3d171a4fb68ba63751a2889fc4ab78a
+PODFILE CHECKSUM: 4642d86e3df51bff756efc8b11b2c15ceb7ec99d
 
 COCOAPODS: 1.1.1

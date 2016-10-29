@@ -50,11 +50,31 @@ public struct APIResults: Decodable {
 }
 
 public struct APIImageResult: Decodable {
-    public let path: String?
     public let fileExtension: String?
     
+    private var _path: String!
+    public var path: String? {
+        return self.securePath(path: _path)
+    }
+    
+    public var url: URL? {
+        return URL(string: self.securePath(path: self._path) + "." + self.fileExtension!)
+    }
+    
+    
+    func securePath(path:String) -> String {
+        if path.hasPrefix("http://") {
+            let range = path.range(of: "http://")
+            var newPath = path
+            newPath.removeSubrange(range!)
+            return "https://" + newPath
+        } else {
+            return path
+        }
+    }
+    
     public init?(json:JSON) {
-        self.path = "path" <~~ json
+        self._path = "path" <~~ json
         self.fileExtension = "extension" <~~ json
     }
     

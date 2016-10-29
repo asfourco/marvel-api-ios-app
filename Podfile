@@ -4,6 +4,7 @@ target 'MarvelAPIDemo' do
   use_frameworks!
 
   pod 'Alamofire'
+  pod 'AlamofireImage'
   pod 'CryptoSwift'
   pod 'Gloss'
 end

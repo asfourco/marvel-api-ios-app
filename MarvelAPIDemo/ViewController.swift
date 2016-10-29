@@ -9,21 +9,12 @@
 import UIKit
 
 
-class ViewController: UIViewController {
+class ViewController: UINavigationController {
         
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        APICall().downloadComics() {
-            (data: APIReturnDataSet?, results: [APIResults]?, error: String) in
-            print("status: \(data?.status)")
-            print("attributionText: \(data?.attributionText)")
-            print("Returned with data count: \(data?.data?.count)")
-            print("Returned with data limit of: \(data?.data?.limit)")
-            print("results count: \(results?.count)")
-            print("errors: \(error)")
-        }
     }
     
     override func didReceiveMemoryWarning() {
