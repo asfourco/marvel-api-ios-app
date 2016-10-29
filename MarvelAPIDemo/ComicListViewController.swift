@@ -15,16 +15,16 @@ class ComicListViewController: UITableViewController {
     let reusableCellIdentifier = "comicCell"
     let comicDetailSegueIdentifier = "ComicDetailSegue"
     
-    var imageToPass:UIImage!
-    var dataToPass:APIResult!
+    
+    let loadingView = UIView()
+    let spinner = UIActivityIndicatorView()
+    let loadingLabel = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.setLoadingScreen()
+        
         APICall().downloadComics() {
             (data: APIReturnDataSet?, results: [APIResult]?, error: String) in
             print("status: \(data?.status)")
@@ -35,6 +35,7 @@ class ComicListViewController: UITableViewController {
             print("errors: \(error)")
             self.comicList = results!
             self.tableView.reloadData()
+            self.removeLoadingScreen()
         }
     }
 
@@ -42,7 +43,8 @@ class ComicListViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -106,5 +108,45 @@ class ComicListViewController: UITableViewController {
         }
     }
     
+    
+    // MARK: - Loading screen
+    private func setLoadingScreen() {
+        
+        // set the container view to be center of screen
+        let width: CGFloat = 120
+        let height: CGFloat = 30
+        
+        let x = (self.tableView.frame.width / 2) - (width / 2)
+        let y = (self.tableView.frame.height / 2) - (height / 2) - (self.navigationController?.navigationBar.frame.height)!
+        
+        self.loadingView.frame = CGRect(x: x, y: y, width: width, height: height)
+        self.loadingView.backgroundColor = UIColor.white
+        
+        // set loading text
+        self.loadingLabel.textColor = UIColor.gray
+        self.loadingLabel.textAlignment = NSTextAlignment.center
+        self.loadingLabel.text = "Loading ..."
+        self.loadingLabel.frame = CGRect(x: 0, y: 0, width: 140, height: 30)
+        
+        // setup spinner
+        self.spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        self.spinner.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        self.spinner.startAnimating()
+        
+        // Load label and spinner onto the view
+        self.loadingView.addSubview(self.spinner)
+        self.loadingView.addSubview(self.loadingLabel)
+        
+        // load view on top of table
+        self.tableView.addSubview(self.loadingView)
+    }
+    
+    private func removeLoadingScreen() {
+        
+        // Stop animation and review subview
+        self.spinner.stopAnimating()
+        self.loadingView.removeFromSuperview()
+        
+    }
 
 }
