@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		32365E5E1DC425D100DB9770 /* ComicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32365E5D1DC425D100DB9770 /* ComicListViewController.swift */; };
 		32365E621DC42D9E00DB9770 /* ComicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32365E611DC42D9E00DB9770 /* ComicTableViewCell.swift */; };
+		32AC26F01DC45CA000504D56 /* ComicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AC26EF1DC45CA000504D56 /* ComicDetailViewController.swift */; };
 		32BF064A1DC2CC2B00D32E24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF06491DC2CC2B00D32E24 /* AppDelegate.swift */; };
 		32BF064C1DC2CC2B00D32E24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF064B1DC2CC2B00D32E24 /* ViewController.swift */; };
 		32BF064F1DC2CC2B00D32E24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32BF064D1DC2CC2B00D32E24 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		1128F234CF40BF2302EA3D2F /* Pods-MarvelAPIDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelAPIDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MarvelAPIDemo/Pods-MarvelAPIDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		32365E5D1DC425D100DB9770 /* ComicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicListViewController.swift; sourceTree = "<group>"; };
 		32365E611DC42D9E00DB9770 /* ComicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicTableViewCell.swift; sourceTree = "<group>"; };
+		32AC26EF1DC45CA000504D56 /* ComicDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicDetailViewController.swift; sourceTree = "<group>"; };
 		32BF06461DC2CC2B00D32E24 /* MarvelAPIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelAPIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32BF06491DC2CC2B00D32E24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32BF064B1DC2CC2B00D32E24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -116,14 +118,15 @@
 			children = (
 				32BF067B1DC329D300D32E24 /* Models */,
 				32BF06491DC2CC2B00D32E24 /* AppDelegate.swift */,
+				32BF06771DC31F2500D32E24 /* MarvelAPI.swift */,
 				32BF064B1DC2CC2B00D32E24 /* ViewController.swift */,
 				32365E5D1DC425D100DB9770 /* ComicListViewController.swift */,
-				32BF064D1DC2CC2B00D32E24 /* Main.storyboard */,
 				32365E611DC42D9E00DB9770 /* ComicTableViewCell.swift */,
+				32AC26EF1DC45CA000504D56 /* ComicDetailViewController.swift */,
+				32BF064D1DC2CC2B00D32E24 /* Main.storyboard */,
 				32BF06501DC2CC2B00D32E24 /* Assets.xcassets */,
 				32BF06521DC2CC2B00D32E24 /* LaunchScreen.storyboard */,
 				32BF06551DC2CC2B00D32E24 /* Info.plist */,
-				32BF06771DC31F2500D32E24 /* MarvelAPI.swift */,
 			);
 			path = MarvelAPIDemo;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				32BF064C1DC2CC2B00D32E24 /* ViewController.swift in Sources */,
 				32BF067D1DC32A0500D32E24 /* APIReturnDataSet.swift in Sources */,
 				32BF064A1DC2CC2B00D32E24 /* AppDelegate.swift in Sources */,
+				32AC26F01DC45CA000504D56 /* ComicDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

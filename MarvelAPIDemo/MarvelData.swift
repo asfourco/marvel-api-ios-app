@@ -15,7 +15,7 @@ public struct APIData: Decodable {
     public let limit: Int?
     public let total: Int?
     public let count: Int?
-    public let results: [APIResults]?
+    public let results: [APIResult]?
     
     public init?(json: JSON) {
         self.offset = "offset" <~~ json
@@ -26,7 +26,7 @@ public struct APIData: Decodable {
     }
 }
 
-public struct APIResults: Decodable {
+public struct APIResult: Decodable {
     public let id: Int?
     public let title: String?
     public let issueNumber: Int?
@@ -35,6 +35,7 @@ public struct APIResults: Decodable {
     public let pageCount: Int?
     public let thumbnail: APIImageResult?
     public let image:APIImageResult?
+    public let prices:[APIPrice]?
     
     
     public init?(json: JSON) {
@@ -46,6 +47,7 @@ public struct APIResults: Decodable {
         self.pageCount = "pageCount" <~~ json
         self.thumbnail = "thumbnail" <~~ json
         self.image = "image" <~~ json
+        self.prices = "prices" <~~ json
     }
 }
 
@@ -78,4 +80,14 @@ public struct APIImageResult: Decodable {
         self.fileExtension = "extension" <~~ json
     }
     
+}
+
+public struct APIPrice: Decodable {
+    public let type: String?
+    public let price: Double?
+    
+    public init?(json:JSON) {
+        self.type = "type" <~~ json
+        self.price = "price" <~~ json
+    }
 }
