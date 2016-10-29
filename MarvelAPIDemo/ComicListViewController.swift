@@ -12,6 +12,8 @@ import AlamofireImage
 class ComicListViewController: UITableViewController {
     
     var comicList: [APIResult] = []
+    var imageList: [UIImage] = []
+    
     let reusableCellIdentifier = "comicCell"
     let comicDetailSegueIdentifier = "ComicDetailSegue"
     
@@ -19,24 +21,18 @@ class ComicListViewController: UITableViewController {
     let loadingView = UIView()
     let spinner = UIActivityIndicatorView()
     let loadingLabel = UILabel()
+    var loadingData = false
+    
+    let limit:Int = 20
+    var offset:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.setLoadingScreen()
+        self.imageList = []
         
-        APICall().downloadComics() {
-            (data: APIReturnDataSet?, results: [APIResult]?, error: String) in
-            print("status: \(data?.status)")
-            print("attributionText: \(data?.attributionText)")
-            print("Returned with data count: \(data?.data?.count)")
-            print("Returned with data limit of: \(data?.data?.limit)")
-            print("results count: \(results?.count)")
-            print("errors: \(error)")
-            self.comicList = results!
-            self.tableView.reloadData()
-            self.removeLoadingScreen()
-        }
+        self.setLoadingScreen()
+        self.populateTable()
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,6 +48,7 @@ class ComicListViewController: UITableViewController {
         return 1
     }
 
+    // TODO: update number of rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return self.comicList.count
@@ -62,22 +59,21 @@ class ComicListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: reusableCellIdentifier, for: indexPath) as! ComicTableViewCell
 
         let cellData = self.comicList[indexPath.row]
-//        cell.thumbnail.contentMode = .scaleAspectFill
-        print("cell at \(indexPath.row) call download image)")
-        let url = cellData.thumbnail?.url
-        print("going to get image from url: \(url)")
-        do {
-            let data = try Data(contentsOf: url!)
-            cell.thumbnail.image = UIImage(data: data)
-            cell.thumbnail.image?.af_inflate()
-            
-        } catch let error as NSError {
-            print("error: \(error)")
-        }
-        
-        cell.titleLabel.text = cellData.title
 
+        cell.titleLabel.text = cellData.title
+        cell.thumbnail.image = self.imageList[indexPath.row]
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("willDisplay cell at \(indexPath.row), loadingData: \(loadingData), imageList.count = \(imageList.count)")
+        
+        if !self.loadingData && indexPath.row == self.imageList.count - 1 {
+            self.setLoadingScreen()
+            self.loadingData = true
+            self.populateTable()
+        }
     }
     
     
@@ -147,6 +143,44 @@ class ComicListViewController: UITableViewController {
         self.spinner.stopAnimating()
         self.loadingView.removeFromSuperview()
         
+    }
+    
+    
+    private func getImages(results:[APIResult]) {
+        var itemCount: Int = 0
+        print("getImages called with results.count: \(results.count)")
+        
+        for item in results {
+            print("item: \(itemCount)")
+            do {
+                try self.imageList.append(UIImage(data: Data(contentsOf: (item.thumbnail?.url)!))!)
+                itemCount += 1
+            } catch let error as NSError {
+                print("error: \(error)")
+            }
+        }
+        
+        self.loadingData = false
+        self.tableView.reloadData()
+        self.removeLoadingScreen()
+        
+    }
+    
+    private func populateTable() {
+        
+        APICall().downloadComics(limit: limit, offset: offset) {
+            (data: APIReturnDataSet?, results: [APIResult]?, error: String) in
+            print("status: \(data?.status)")
+            print("attributionText: \(data?.attributionText)")
+            print("Returned with data count: \(data?.data?.count)")
+            print("Returned with data limit of: \(data?.data?.limit)")
+            print("results count: \(results?.count)")
+            print("errors: \(error)")
+            self.offset += self.limit
+            self.comicList += results!
+            
+            self.getImages(results: results!)
+        }
     }
 
 }
