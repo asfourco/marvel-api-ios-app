@@ -12,7 +12,6 @@
 		324706B41DC560970025C99E /* apikeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 324706B31DC560970025C99E /* apikeys.plist */; };
 		327010E21DC59C3D00EF1D5D /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327010E11DC59C3D00EF1D5D /* LoadingIndicatorView.swift */; };
 		32AA08C71DC5EBCF00C43F9F /* MarvelAPIDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AA08C61DC5EBCF00C43F9F /* MarvelAPIDemoTests.swift */; };
-		32AA08CF1DC6030800C43F9F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 32AA08CE1DC6030800C43F9F /* README.md */; };
 		32AA08D11DC6045300C43F9F /* apikeys_example.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32AA08D01DC6045300C43F9F /* apikeys_example.plist */; };
 		32AC26F01DC45CA000504D56 /* ComicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AC26EF1DC45CA000504D56 /* ComicDetailViewController.swift */; };
 		32BF064A1DC2CC2B00D32E24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF06491DC2CC2B00D32E24 /* AppDelegate.swift */; };
@@ -45,7 +44,6 @@
 		32AA08C41DC5EBCF00C43F9F /* MarvelAPIDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelAPIDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32AA08C61DC5EBCF00C43F9F /* MarvelAPIDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelAPIDemoTests.swift; sourceTree = "<group>"; };
 		32AA08C81DC5EBCF00C43F9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		32AA08CE1DC6030800C43F9F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		32AA08D01DC6045300C43F9F /* apikeys_example.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = apikeys_example.plist; sourceTree = "<group>"; };
 		32AC26EF1DC45CA000504D56 /* ComicDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicDetailViewController.swift; sourceTree = "<group>"; };
 		32BF06461DC2CC2B00D32E24 /* MarvelAPIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelAPIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,7 +102,6 @@
 		32BF063D1DC2CC2B00D32E24 = {
 			isa = PBXGroup;
 			children = (
-				32AA08CE1DC6030800C43F9F /* README.md */,
 				32BF06481DC2CC2B00D32E24 /* MarvelAPIDemo */,
 				32AA08C51DC5EBCF00C43F9F /* MarvelAPIDemoTests */,
 				32BF06471DC2CC2B00D32E24 /* Products */,
@@ -214,7 +211,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Fadi Asfour";
 				TargetAttributes = {
 					32AA08C31DC5EBCF00C43F9F = {
@@ -334,7 +331,6 @@
 			files = (
 				32365E621DC42D9E00DB9770 /* ComicTableViewCell.swift in Sources */,
 				32BF067A1DC323B600D32E24 /* MarvelData.swift in Sources */,
-				32AA08CF1DC6030800C43F9F /* README.md in Sources */,
 				32365E5E1DC425D100DB9770 /* ComicListViewController.swift in Sources */,
 				327010E21DC59C3D00EF1D5D /* LoadingIndicatorView.swift in Sources */,
 				32BF06781DC31F2500D32E24 /* MarvelAPI.swift in Sources */,
@@ -408,6 +404,7 @@
 		32BF066C1DC2CC2C00D32E24 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -459,6 +456,7 @@
 		32BF066D1DC2CC2C00D32E24 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -504,6 +502,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1128F234CF40BF2302EA3D2F /* Pods-MarvelAPIDemo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R82H95YACH;
 				INFOPLIST_FILE = MarvelAPIDemo/Info.plist;
@@ -519,6 +518,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B8704500C4C87A642386034 /* Pods-MarvelAPIDemo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R82H95YACH;
 				INFOPLIST_FILE = MarvelAPIDemo/Info.plist;
@@ -540,6 +540,7 @@
 				32AA08CD1DC5EBCF00C43F9F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		32BF06411DC2CC2B00D32E24 /* Build configuration list for PBXProject "MarvelAPIDemo" */ = {
 			isa = XCConfigurationList;

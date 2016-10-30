@@ -18,7 +18,7 @@ class ComicListViewController: UITableViewController {
     let comicDetailSegueIdentifier = "ComicDetailSegue"
     
     var loadingData = false
-    let limit:Int = 9
+    let limit:Int = 10
     var offset:Int = 0
     
     override func viewDidLoad() {
@@ -130,7 +130,7 @@ class ComicListViewController: UITableViewController {
             print("results count: \(results?.count)")
             print("errors: \(error)")
             
-            self.offset += limit
+            self.offset += (data?.data?.count)!
             print("new offset:\(self.offset)")
             self.comicAttributionText = data?.attributionText
             self.comicList += results!

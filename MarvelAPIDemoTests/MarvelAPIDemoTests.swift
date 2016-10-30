@@ -53,9 +53,11 @@ class MarvelAPIDemoTests: XCTestCase {
                 (data: APIReturnDataSet?, results: [APIResult]?, error: String) in
                 
                 comicList += results!
-                offset += limit
+                offset += (data?.data?.limit)!
                 
+                XCTAssertEqual(data?.data?.limit!, limit, "returned results not equal to asked limit")
                 XCTAssertEqual(offset, limit * i+1, "offset is not incrementing properly")
+                XCTAssertEqual(data?.data?.offset!, offset, "local offset is not the same as API offset call")
                 XCTAssertEqual(results!.count, 10, "returned results not equal to limit")
                 XCTAssertEqual(comicList.count, offset, "appended array is not increasing correctly")
                 
