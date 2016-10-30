@@ -28,7 +28,6 @@ class ComicListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.imageList = []
         
         self.setLoadingScreen()
         self.populateTable()
@@ -56,14 +55,15 @@ class ComicListViewController: UITableViewController {
         let cellData = self.comicList[indexPath.row]
 
         cell.titleLabel.text = cellData.title
-//        cell.thumbnail.image = self.imageList[indexPath.row]
+        // Use AlamofireImage to async download and set images
         cell.thumbnail.af_setImage(withURL: (cellData.thumbnail?.url)!)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print("willDisplay cell at \(indexPath.row), loadingData: \(loadingData), imageList.count = \(self.comicList.count)")
+        
+//        print("willDisplay cell at \(indexPath.row), loadingData: \(loadingData), imageList.count = \(self.comicList.count)")
         
         if !self.loadingData && indexPath.row == self.comicList.count - 3 {
             self.setLoadingScreen()
@@ -76,11 +76,7 @@ class ComicListViewController: UITableViewController {
     // MARK: - Navigation
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        let cell = tableView.cellForRow(at: indexPath) as! ComicTableViewCell
-//        self.imageToPass = cell.thumbnail.image
-//        self.dataToPass = self.comicList[indexPath.row]
-//
-        print("user selected row: \(indexPath.row)")
+//        print("user selected row: \(indexPath.row)")
         
         shouldPerformSegue(withIdentifier: comicDetailSegueIdentifier, sender: self)
     }
@@ -102,81 +98,16 @@ class ComicListViewController: UITableViewController {
     
     
     // MARK: - Loading screen
+    
     private func setLoadingScreen() {
-        
-        // set the container view to be center of screen
-        let width: CGFloat = 120
-        let height: CGFloat = 30
-        
-        let x = (self.tableView.frame.width / 2) - (width / 2)
-        let y = (self.tableView.frame.height / 2) - (height / 2) - (self.navigationController?.navigationBar.frame.height)!
-        
-        self.loadingView.frame = CGRect(x: x, y: y, width: width, height: height)
-//        self.loadingView.frame = self.tableView.bounds;
-        self.loadingView.backgroundColor = UIColor.white
-        
-        // set loading text
-        self.loadingLabel.textColor = UIColor.gray
-        self.loadingLabel.textAlignment = NSTextAlignment.center
-        self.loadingLabel.text = "Loading ..."
-        self.loadingLabel.frame = CGRect(x: 0, y: 0, width: 140, height: 30)
-        
-        // setup spinner
-        self.spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        self.spinner.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        self.spinner.startAnimating()
-        
-        // Load label and spinner onto the view
-        self.loadingView.addSubview(self.spinner)
-        self.loadingView.addSubview(self.loadingLabel)
-        
-        // load view on top of table
-        self.tableView.addSubview(self.loadingView)
+        LoadingIndicatorView.show("Loading")
     }
     
     private func removeLoadingScreen() {
-        
-        // Stop animation and review subview
-        self.spinner.stopAnimating()
-        self.loadingView.removeFromSuperview()
+        LoadingIndicatorView.hide()
     }
     
     // MARK: - Downloaders
-    
-    
-    private func getImages(results:[APIResult]) {
-    
-        let imageDownloader = ImageDownloader(
-            configuration: ImageDownloader.defaultURLSessionConfiguration(),
-            downloadPrioritization: .fifo,
-            maximumActiveDownloads: 4,
-            imageCache: AutoPurgingImageCache()
-        )
-        
-        for item in results {
-            print("getting item:\(item.thumbnail?.url)")
-            
-//            imageDownloader.download(URLRequest(url:(item.thumbnail?.url!)!)) {
-//                response in
-//                
-//                print("completion from imageDownloader")
-//                if let image = response.result.value {
-//                    self.imageList.append(image)
-//                }
-//                
-//            }
-//            do {
-//                try self.imageList.append(UIImage(data: Data(contentsOf: (item.thumbnail?.url)!))!)
-//            } catch let error as NSError {
-//                print("error: \(error)")
-//            }
-        }
-        
-        self.loadingData = false
-        self.tableView.reloadData()
-        self.removeLoadingScreen()
-        
-    }
     
     private func populateTable() {
         
@@ -188,10 +119,11 @@ class ComicListViewController: UITableViewController {
             print("Returned with data limit of: \(data?.data?.limit)")
             print("results count: \(results?.count)")
             print("errors: \(error)")
+            
             self.offset += self.limit
+            
             self.comicList += results!
             
-//            self.getImages(results: results!)
             self.loadingData = false
             self.tableView.reloadData()
             self.removeLoadingScreen()
