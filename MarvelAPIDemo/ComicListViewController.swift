@@ -131,6 +131,7 @@ class ComicListViewController: UITableViewController {
             print("errors: \(error)")
             
             self.offset += (data?.data?.count)!
+            
             print("new offset:\(self.offset)")
             self.comicAttributionText = data?.attributionText
             self.comicList += results!
