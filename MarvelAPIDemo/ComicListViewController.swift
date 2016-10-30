@@ -11,6 +11,7 @@ import AlamofireImage
 
 class ComicListViewController: UITableViewController {
     
+    var comicAttributionText: String?
     var comicList: [APIResult] = []
     var imageList: [UIImage] = []
     
@@ -18,12 +19,13 @@ class ComicListViewController: UITableViewController {
     let comicDetailSegueIdentifier = "ComicDetailSegue"
     
     
+    
     let loadingView = UIView()
     let spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
     let loadingLabel = UILabel()
     var loadingData = false
     
-    let limit:Int = 10
+    let limit:Int = 8 //magic number to avoid overlap data from marvel api server
     var offset:Int = 0
     
     override func viewDidLoad() {
@@ -65,7 +67,7 @@ class ComicListViewController: UITableViewController {
         
 //        print("willDisplay cell at \(indexPath.row), loadingData: \(loadingData), imageList.count = \(self.comicList.count)")
         
-        if !self.loadingData && indexPath.row == self.comicList.count - 3 {
+        if !self.loadingData && indexPath.row == self.comicList.count - 1 {
             self.setLoadingScreen()
             self.loadingData = true
             self.populateTable()
@@ -96,11 +98,22 @@ class ComicListViewController: UITableViewController {
         }
     }
     
+    @IBAction func openAboutScreen(_ sender: UIBarButtonItem) {
+        let title = "About"
+        let message = self.comicAttributionText! + "\n\n" + "Fadi Asfour © 2016"
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+        alertController.addAction(dismissAction)
+        self.present(alertController, animated:true, completion:nil)
+        
+    }
+    
     
     // MARK: - Loading screen
     
     private func setLoadingScreen() {
-        LoadingIndicatorView.show("Loading")
+        LoadingIndicatorView.show(self.view,loadingText: "Loading")
     }
     
     private func removeLoadingScreen() {
@@ -122,6 +135,7 @@ class ComicListViewController: UITableViewController {
             
             self.offset += self.limit
             
+            self.comicAttributionText = data?.attributionText
             self.comicList += results!
             
             self.loadingData = false

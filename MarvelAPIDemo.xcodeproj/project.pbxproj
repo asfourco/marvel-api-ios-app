@@ -98,6 +98,7 @@
 		327010E01DC59C1F00EF1D5D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				32BF06771DC31F2500D32E24 /* MarvelAPI.swift */,
 				324706B31DC560970025C99E /* apikeys.plist */,
 				327010E11DC59C3D00EF1D5D /* LoadingIndicatorView.swift */,
 			);
@@ -132,7 +133,6 @@
 				327010E01DC59C1F00EF1D5D /* Supporting Files */,
 				32BF067B1DC329D300D32E24 /* Models */,
 				32BF06491DC2CC2B00D32E24 /* AppDelegate.swift */,
-				32BF06771DC31F2500D32E24 /* MarvelAPI.swift */,
 				32BF064B1DC2CC2B00D32E24 /* ViewController.swift */,
 				32365E5D1DC425D100DB9770 /* ComicListViewController.swift */,
 				32365E611DC42D9E00DB9770 /* ComicTableViewCell.swift */,
