@@ -12,9 +12,7 @@ class ComicDetailViewController: UIViewController {
 
     @IBOutlet weak var comicCover: UIImageView!
     @IBOutlet weak var priceValue: UILabel!
-    @IBOutlet weak var ISBNValue: UILabel!
-//    @IBOutlet weak var comicDescription: UITextView!
-    
+    @IBOutlet weak var pageCount: UILabel!
     @IBOutlet weak var comicDescription: UILabel!
     
     var comicData: APIResult!
@@ -28,7 +26,7 @@ class ComicDetailViewController: UIViewController {
     
         // assign comic details
         self.priceValue.text = comicData.prices != nil ? "$ " + String(format: "%.2f", (comicData.prices?[0].price!)!) : "No price available"
-        self.ISBNValue.text = comicData.isbn != nil ? comicData.isbn! : "ISBN unavailable"
+        self.pageCount.text = comicData.pageCount != nil ? String(comicData.pageCount!) : "No data"
         
         self.comicDescription.lineBreakMode = .byWordWrapping
         self.comicDescription.text = comicData.description != nil ? comicData.description! : "No description available"

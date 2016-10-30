@@ -31,7 +31,7 @@ class ComicListViewController: UITableViewController {
         super.viewDidLoad()
         
         self.setLoadingScreen()
-        self.populateTable()
+        self.populateTable(limit: limit, offset: offset)
     
     }
     
@@ -65,7 +65,7 @@ class ComicListViewController: UITableViewController {
         if !self.loadingData && indexPath.row == self.comicList.count - 1 {
             self.setLoadingScreen()
             self.loadingData = true
-            self.populateTable()
+            self.populateTable(limit:limit, offset:offset)
         }
     }
     
@@ -108,7 +108,7 @@ class ComicListViewController: UITableViewController {
     // MARK: - Loading screen
     
     private func setLoadingScreen() {
-        LoadingIndicatorView.show(self.view,loadingText: "Loading")
+        LoadingIndicatorView.show("Loading")
     }
     
     private func removeLoadingScreen() {
@@ -117,27 +117,28 @@ class ComicListViewController: UITableViewController {
     
     // MARK: - Downloaders
     
-    private func populateTable() {
-        
+    private func populateTable(limit:Int, offset:Int) {
+        print("limit:\(limit), offset:\(offset)")
         APICall().downloadComics(limit: limit, offset: offset) {
             (data: APIReturnDataSet?, results: [APIResult]?, error: String) in
-            print("status: \(data?.status)")
+            print("return code: \(data?.code)")
             print("attributionText: \(data?.attributionText)")
+            print("total avaialable: \(data?.data?.total)")
+            print("offset: \(data?.data?.offset)")
             print("Returned with data count: \(data?.data?.count)")
             print("Returned with data limit of: \(data?.data?.limit)")
             print("results count: \(results?.count)")
             print("errors: \(error)")
             
-            self.offset += self.limit
-            
+            self.offset += limit
+            print("new offset:\(self.offset)")
             self.comicAttributionText = data?.attributionText
             self.comicList += results!
-            
             self.loadingData = false
             self.tableView.reloadData()
             self.removeLoadingScreen()
             
         }
     }
-
+    
 }

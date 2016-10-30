@@ -37,7 +37,6 @@ public struct APIResult: Decodable {
     public let image:APIImageResult?
     public let prices:[APIPrice]?
     
-    
     public init?(json: JSON) {
         self.id = "id" <~~ json
         self.title = "title" <~~ json

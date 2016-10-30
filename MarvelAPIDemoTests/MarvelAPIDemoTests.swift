@@ -2,7 +2,7 @@
 //  MarvelAPIDemoTests.swift
 //  MarvelAPIDemoTests
 //
-//  Created by Fadi Asfour on 2016-10-27.
+//  Created by Fadi Asfour on 2016-10-30.
 //  Copyright © 2016 Fadi Asfour. All rights reserved.
 //
 
@@ -10,13 +10,11 @@ import XCTest
 @testable import MarvelAPIDemo
 
 class MarvelAPIDemoTests: XCTestCase {
-    var vc: ViewController!
     
     override func setUp() {
         super.setUp()
+        // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        vc = storyboard.instantiateInitialViewController() as! ViewController
     }
     
     override func tearDown() {
@@ -25,21 +23,44 @@ class MarvelAPIDemoTests: XCTestCase {
     }
     
     func testMarvelAPICall() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-//        vc.downloadComics() {
-//            (status: String, attributionText: String, results: [AnyObject]) in
-//            
-//            XCTAssert(status == "Ok", "return status is not ok!")
-//            XCTAssertNil(results, "results array is empty!")
-//        }
-    }
+        let limit = 10
+        let offset = 0
+        
+        var comicList: [APIResult] = []
+        
+        APICall().downloadComics(limit: limit, offset: offset) {
+            (data: APIReturnDataSet?, results: [APIResult]?, error: String) in
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+            comicList += results!
+            
+            XCTAssertNil(results)
+            XCTAssertNil(comicList)
+            
         }
     }
     
+    func testSubsequentMarvelAPICall() {
+        
+        let limit = 10
+        var offset = 0
+        let iterations = 10
+        
+        var comicList: [APIResult] = []
+        
+        for i in (0..<iterations) {
+            
+            APICall().downloadComics(limit: limit, offset: offset) {
+                (data: APIReturnDataSet?, results: [APIResult]?, error: String) in
+                
+                comicList += results!
+                offset += limit
+                
+                XCTAssertEqual(offset, limit * i+1, "offset is not incrementing properly")
+                XCTAssertEqual(results!.count, 10, "returned results not equal to limit")
+                XCTAssertEqual(comicList.count, offset, "appended array is not increasing correctly")
+                
+            }
+        }
+        
+    }
 }

@@ -26,25 +26,16 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "32BF06591DC2CC2C00D32E24"
+               BlueprintIdentifier = "32AA08C31DC5EBCF00C43F9F"
                BuildableName = "MarvelAPIDemoTests.xctest"
                BlueprintName = "MarvelAPIDemoTests"
-               ReferencedContainer = "container:MarvelAPIDemo.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "32BF06641DC2CC2C00D32E24"
-               BuildableName = "MarvelAPIDemoUITests.xctest"
-               BlueprintName = "MarvelAPIDemoUITests"
                ReferencedContainer = "container:MarvelAPIDemo.xcodeproj">
             </BuildableReference>
          </TestableReference>
