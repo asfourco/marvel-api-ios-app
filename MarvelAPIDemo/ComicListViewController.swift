@@ -19,11 +19,11 @@ class ComicListViewController: UITableViewController {
     
     
     let loadingView = UIView()
-    let spinner = UIActivityIndicatorView()
+    let spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
     let loadingLabel = UILabel()
     var loadingData = false
     
-    let limit:Int = 20
+    let limit:Int = 10
     var offset:Int = 0
     
     override func viewDidLoad() {
@@ -34,21 +34,16 @@ class ComicListViewController: UITableViewController {
         self.populateTable()
     
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return (self.comicList.count > 0) ? 1 : 0
     }
 
-    // TODO: update number of rows
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return self.comicList.count
@@ -61,15 +56,16 @@ class ComicListViewController: UITableViewController {
         let cellData = self.comicList[indexPath.row]
 
         cell.titleLabel.text = cellData.title
-        cell.thumbnail.image = self.imageList[indexPath.row]
+//        cell.thumbnail.image = self.imageList[indexPath.row]
+        cell.thumbnail.af_setImage(withURL: (cellData.thumbnail?.url)!)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print("willDisplay cell at \(indexPath.row), loadingData: \(loadingData), imageList.count = \(imageList.count)")
+        print("willDisplay cell at \(indexPath.row), loadingData: \(loadingData), imageList.count = \(self.comicList.count)")
         
-        if !self.loadingData && indexPath.row == self.imageList.count - 1 {
+        if !self.loadingData && indexPath.row == self.comicList.count - 3 {
             self.setLoadingScreen()
             self.loadingData = true
             self.populateTable()
@@ -116,6 +112,7 @@ class ComicListViewController: UITableViewController {
         let y = (self.tableView.frame.height / 2) - (height / 2) - (self.navigationController?.navigationBar.frame.height)!
         
         self.loadingView.frame = CGRect(x: x, y: y, width: width, height: height)
+//        self.loadingView.frame = self.tableView.bounds;
         self.loadingView.backgroundColor = UIColor.white
         
         // set loading text
@@ -142,22 +139,37 @@ class ComicListViewController: UITableViewController {
         // Stop animation and review subview
         self.spinner.stopAnimating()
         self.loadingView.removeFromSuperview()
-        
     }
+    
+    // MARK: - Downloaders
     
     
     private func getImages(results:[APIResult]) {
-        var itemCount: Int = 0
-        print("getImages called with results.count: \(results.count)")
+    
+        let imageDownloader = ImageDownloader(
+            configuration: ImageDownloader.defaultURLSessionConfiguration(),
+            downloadPrioritization: .fifo,
+            maximumActiveDownloads: 4,
+            imageCache: AutoPurgingImageCache()
+        )
         
         for item in results {
-            print("item: \(itemCount)")
-            do {
-                try self.imageList.append(UIImage(data: Data(contentsOf: (item.thumbnail?.url)!))!)
-                itemCount += 1
-            } catch let error as NSError {
-                print("error: \(error)")
-            }
+            print("getting item:\(item.thumbnail?.url)")
+            
+//            imageDownloader.download(URLRequest(url:(item.thumbnail?.url!)!)) {
+//                response in
+//                
+//                print("completion from imageDownloader")
+//                if let image = response.result.value {
+//                    self.imageList.append(image)
+//                }
+//                
+//            }
+//            do {
+//                try self.imageList.append(UIImage(data: Data(contentsOf: (item.thumbnail?.url)!))!)
+//            } catch let error as NSError {
+//                print("error: \(error)")
+//            }
         }
         
         self.loadingData = false
@@ -179,7 +191,11 @@ class ComicListViewController: UITableViewController {
             self.offset += self.limit
             self.comicList += results!
             
-            self.getImages(results: results!)
+//            self.getImages(results: results!)
+            self.loadingData = false
+            self.tableView.reloadData()
+            self.removeLoadingScreen()
+            
         }
     }
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		32365E5E1DC425D100DB9770 /* ComicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32365E5D1DC425D100DB9770 /* ComicListViewController.swift */; };
 		32365E621DC42D9E00DB9770 /* ComicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32365E611DC42D9E00DB9770 /* ComicTableViewCell.swift */; };
+		324706B41DC560970025C99E /* apikeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 324706B31DC560970025C99E /* apikeys.plist */; };
 		32AC26F01DC45CA000504D56 /* ComicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AC26EF1DC45CA000504D56 /* ComicDetailViewController.swift */; };
 		32BF064A1DC2CC2B00D32E24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF06491DC2CC2B00D32E24 /* AppDelegate.swift */; };
 		32BF064C1DC2CC2B00D32E24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF064B1DC2CC2B00D32E24 /* ViewController.swift */; };
@@ -44,6 +45,7 @@
 		1128F234CF40BF2302EA3D2F /* Pods-MarvelAPIDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelAPIDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MarvelAPIDemo/Pods-MarvelAPIDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		32365E5D1DC425D100DB9770 /* ComicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicListViewController.swift; sourceTree = "<group>"; };
 		32365E611DC42D9E00DB9770 /* ComicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicTableViewCell.swift; sourceTree = "<group>"; };
+		324706B31DC560970025C99E /* apikeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = apikeys.plist; sourceTree = "<group>"; };
 		32AC26EF1DC45CA000504D56 /* ComicDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicDetailViewController.swift; sourceTree = "<group>"; };
 		32BF06461DC2CC2B00D32E24 /* MarvelAPIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelAPIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32BF06491DC2CC2B00D32E24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		32BF06481DC2CC2B00D32E24 /* MarvelAPIDemo */ = {
 			isa = PBXGroup;
 			children = (
+				324706B31DC560970025C99E /* apikeys.plist */,
 				32BF067B1DC329D300D32E24 /* Models */,
 				32BF06491DC2CC2B00D32E24 /* AppDelegate.swift */,
 				32BF06771DC31F2500D32E24 /* MarvelAPI.swift */,
@@ -289,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32BF06541DC2CC2B00D32E24 /* LaunchScreen.storyboard in Resources */,
+				324706B41DC560970025C99E /* apikeys.plist in Resources */,
 				32BF06511DC2CC2B00D32E24 /* Assets.xcassets in Resources */,
 				32BF064F1DC2CC2B00D32E24 /* Main.storyboard in Resources */,
 			);

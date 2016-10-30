@@ -24,9 +24,9 @@ class ComicDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.comicCover.image = self.comicCoverImage
         
-        self.priceValue.text = comicData.prices!.count > 0 ? "$ " + String(format: "%.2f", (comicData.prices?[0].price!)!) : "No price available"
-        self.ISBNValue.text = (comicData.isbn?.isEmpty)! ? "ISBN unavailable" : comicData.isbn
-        self.comicDescription.text = (comicData.description?.isEmpty)! ? "No description available" : comicData.description
+        self.priceValue.text = comicData.prices != nil ? "$ " + String(format: "%.2f", (comicData.prices?[0].price!)!) : "No price available"
+        self.ISBNValue.text = comicData.isbn != nil ? comicData.isbn! : "ISBN unavailable"
+        self.comicDescription.text = comicData.description != nil ? comicData.description! : "No description available"
     }
 
     override func didReceiveMemoryWarning() {
