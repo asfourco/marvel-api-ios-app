@@ -13,7 +13,6 @@ class ComicListViewController: UITableViewController {
     
     var comicAttributionText: String?
     var comicList: [APIResult] = []
-    var imageList: [UIImage] = []
     
     let reusableCellIdentifier = "comicCell"
     let comicDetailSegueIdentifier = "ComicDetailSegue"
@@ -40,13 +39,11 @@ class ComicListViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return (self.comicList.count > 0) ? 1 : 0
     }
 
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.comicList.count
     }
 
@@ -64,8 +61,6 @@ class ComicListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-//        print("willDisplay cell at \(indexPath.row), loadingData: \(loadingData), imageList.count = \(self.comicList.count)")
         
         if !self.loadingData && indexPath.row == self.comicList.count - 1 {
             self.setLoadingScreen()
