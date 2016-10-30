@@ -17,14 +17,8 @@ class ComicListViewController: UITableViewController {
     let reusableCellIdentifier = "comicCell"
     let comicDetailSegueIdentifier = "ComicDetailSegue"
     
-    
-    
-    let loadingView = UIView()
-    let spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-    let loadingLabel = UILabel()
     var loadingData = false
-    
-    let limit:Int = 8 //magic number to avoid overlap data from marvel api server
+    let limit:Int = 9
     var offset:Int = 0
     
     override func viewDidLoad() {
@@ -72,16 +66,12 @@ class ComicListViewController: UITableViewController {
     
     // MARK: - Navigation
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
 //        print("user selected row: \(indexPath.row)")
-        
         shouldPerformSegue(withIdentifier: comicDetailSegueIdentifier, sender: self)
     }
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         if segue.identifier == comicDetailSegueIdentifier {
             
             let indexPath = tableView.indexPathForSelectedRow!
@@ -93,6 +83,9 @@ class ComicListViewController: UITableViewController {
         }
     }
     
+    /// Present an alert view to the user with Marvel attribution
+    ///
+    /// - Parameter sender: The associated UIBarButtonItem
     @IBAction func openAboutScreen(_ sender: UIBarButtonItem) {
         let title = "About"
         let message = self.comicAttributionText! + "\n\n" + "Fadi Asfour © 2016"
@@ -107,16 +100,23 @@ class ComicListViewController: UITableViewController {
     
     // MARK: - Loading screen
     
+    /// Insert loading overlay on screen
     private func setLoadingScreen() {
         LoadingIndicatorView.show("Loading")
     }
     
+    /// Remove loading overlay from screen
     private func removeLoadingScreen() {
         LoadingIndicatorView.hide()
     }
     
     // MARK: - Downloaders
     
+    /// Retrieve data from marvel api and populate the comic list
+    ///
+    /// - Parameters:
+    ///   - limit: A number indicating how many records should be retrieved
+    ///   - offset: The number of records to skip
     private func populateTable(limit:Int, offset:Int) {
         print("limit:\(limit), offset:\(offset)")
         APICall().downloadComics(limit: limit, offset: offset) {
