@@ -69,8 +69,8 @@ class APICall {
         Alamofire.request(baseMarvelURL, parameters: params).responseJSON { response in
             
             // debug request
-            print("ts I used: \(ts)")
-            print("Original URL Request: \(response.request)")
+//            print("ts I used: \(ts)")
+//            print("Original URL Request: \(response.request)")
             
             guard let marvelReturnData = APIReturnDataSet(json: response.result.value as! JSON) else {
 //                print("Error initializating marvel data object")

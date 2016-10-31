@@ -119,7 +119,7 @@ class ComicListViewController: UITableViewController {
     ///   - limit: A number indicating how many records should be retrieved
     ///   - offset: The number of records to skip
     private func populateTable(limit:Int, offset:Int) {
-        print("limit:\(limit), offset:\(offset)")
+//        print("limit:\(limit), offset:\(offset)")
         APICall().downloadComics(limit: limit, offset: offset) {
             (data: APIReturnDataSet?, results: [APIResult]?, error: String) in
             // uncomment for debugging output onto console
