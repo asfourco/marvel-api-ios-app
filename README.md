@@ -30,7 +30,8 @@ iOS 9.0 or later
 3.  Open MarvelAPIDemo.xcworkspace within Xcode to build, run, or test.
 
 ### Known issues
-1. Response data from marvel for api GET /v1/public/comics returns inconsistent data that contains duplicates 
+1. Response data from marvel for api `GET /v1/public/comics` returns inconsistent data that contains overlapping duplicates.   
+**Workaround:** before appending new set of returning data, look for overlapping duplicates before appending to the master list
 
 
 ---
