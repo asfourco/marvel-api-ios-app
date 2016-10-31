@@ -13,6 +13,7 @@ class ComicListViewController: UITableViewController {
     
     var comicAttributionText: String?
     var comicList: [APIResult] = []
+    var prevImportList: [APIResult] = []
     
     let reusableCellIdentifier = "comicCell"
     let comicDetailSegueIdentifier = "ComicDetailSegue"
@@ -121,6 +122,8 @@ class ComicListViewController: UITableViewController {
         print("limit:\(limit), offset:\(offset)")
         APICall().downloadComics(limit: limit, offset: offset) {
             (data: APIReturnDataSet?, results: [APIResult]?, error: String) in
+            // uncomment for debugging output onto console
+            /*
             print("return code: \(data?.code)")
             print("attributionText: \(data?.attributionText)")
             print("total avaialable: \(data?.data?.total)")
@@ -129,16 +132,37 @@ class ComicListViewController: UITableViewController {
             print("Returned with data limit of: \(data?.data?.limit)")
             print("results count: \(results?.count)")
             print("errors: \(error)")
+            */
             
+            var newImport: [APIResult] = []
+            
+            for result in results! {
+                
+                var duplicate = false
+                
+                for item in self.prevImportList {
+                    if result.id == item.id {
+                        print("found duplicate for result.id:\(result.id)!")
+                        duplicate = true
+                    }
+                }
+                
+                if !duplicate {
+                    newImport.append(result)
+                }
+            }
+            // append to master array trimmed result set
+            self.comicList += newImport
+            // increment offset by what we received
             self.offset += (data?.data?.count)!
-            
-            print("new offset:\(self.offset)")
+            // copy response array to previous imported array
+            self.prevImportList = results!
+
             self.comicAttributionText = data?.attributionText
-            self.comicList += results!
+
             self.loadingData = false
             self.tableView.reloadData()
             self.removeLoadingScreen()
-            
         }
     }
     

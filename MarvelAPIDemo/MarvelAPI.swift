@@ -57,18 +57,19 @@ class APICall {
             "apikey": dict.publicKey!,
             "ts": ts,
             "hash": (ts + dict.privateKey! + dict.publicKey!).md5(),
-            "format":"comic",
-            "noVariants": "true",
-            "orderBy": "title",
+//            "format":"comic",
+//            "noVariants": "true",
+            "orderBy": "-focDate",
             "limit" : limit,
             "offset" : offset,
-            "hasDigitalIssue": "true"
+//            "hasDigitalIssue": "true"
         ]
         
         
         Alamofire.request(baseMarvelURL, parameters: params).responseJSON { response in
             
             // debug request
+            print("ts I used: \(ts)")
             print("Original URL Request: \(response.request)")
             
             guard let marvelReturnData = APIReturnDataSet(json: response.result.value as! JSON) else {
