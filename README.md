@@ -29,6 +29,18 @@ iOS 9.0 or later
 
 3.  Open MarvelAPIDemo.xcworkspace within Xcode to build, run, or test.
 
+
+### Generate your Marvel API keys
+1. Create an account at http://developer.marvel.com
+
+2. After confirming your account, click on the "Get A Key" tab and accept the terms and conditions. You should now see your private and public key
+
+3. Be sure to change your authorized referrers to "*". You will not be able to access the API without changing the "Authorized Referrers" input field from "developers.marvel.com" to "*".
+
+4. Copy the public key and paste it into the publicKey section of the apikeys.plist file. Do the same for your private key.
+
+5. Please remember not to share or upload your apikeys.plist to a public repository.
+
 ### Known issues
 1. Response data from marvel for api `GET /v1/public/comics` returns inconsistent data that contains overlapping duplicates.   
 **Workaround:** before appending new set of returning data, look for overlapping duplicates before appending to the master list
@@ -37,5 +49,3 @@ iOS 9.0 or later
 ---
 Copyright (C) 2016 - Fadi Asfour. All rights reserved
 fadi@asfourconsulting
-
-
