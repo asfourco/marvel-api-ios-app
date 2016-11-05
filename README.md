@@ -35,7 +35,7 @@ iOS 9.0 or later
 
 2. After confirming your account, click on the "Get A Key" tab and accept the terms and conditions. You should now see your private and public key
 
-3. Be sure to change your authorized referrers to "*". You will not be able to access the API without changing the "Authorized Referrers" input field from "developers.marvel.com" to "*".
+3. Be sure to change your authorized referrers to "\*". You will not be able to access the API without changing the "Authorized Referrers" input field from "developers.marvel.com" to "\*".
 
 4. Copy the public key and paste it into the publicKey section of the apikeys.plist file. Do the same for your private key.
 
